@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="master-styles.css" />
+</head>
+<title>Informazine VExSS Release 1</title>
+<!-- BEGIN PROTOTYPE SUMMARY --
+// Informazine VExSS prototype - generic system targeted at any vendor or osp from Vendelligence.
+// Uses Elasticsearch and custom JSON data model.
+// END PROTOTYPE SUMMARY -->
+
+    <body>
+    <div class="top">INFORMAZINE VExSS Release 1</div>
+        <header class="heading">Prototype: Spring Knowledge Base</header>
+        <!-- Control Form Layout with CSS using parent DIV for now as browsers inconsistently handle form element styling. -->
+        <div class="form">
+        <form action="querylib-sap-pi-v3.js" method="get" target="_self">
+            <textarea id="query" rows="10" cols="70" autofocus>
+            </textarea>
+            <button type="button" class="button" onclick="mainController()">Search VExSS - Global Search</button>
+            <button type="reset" class="button">New Query</button>
+            <br />
+            <p><strong>Or choose an option to restrict your analysis:</strong></p>
+            <input type="radio" name="kbType" id="upgrade_migration_kb" value="upgrade_migration_kb" />Upgrades / Migrations
+            <input type="radio" name="kbType" id="usales_licensing_kb" value="sales_licensing_kb" />Sales &amp; Licensing
+            <input type="radio" name="kbType" id="install_kb" value="install_kb" />Installation
+            <input type="radio" name="kbType" id="configuration_kb" value="configuration_kb" />Configuration
+            <input type="radio" name="kbType" id="performance_kb" value="performance_kb" />Performance
+            <input type="radio" name="kbType" id="monitoring_kb" value="monitoring_kb" />Monitoring
+            <input type="radio" name="kbType" id="security_kb" value="security_kb" />Security
+            <input type="radio" name="kbType" id="troubleshooting_kb" value="troubleshooting_kb" />Troubleshooting
+            <input type="radio" name="kbType" id="integration_kb" value="integration_kb" />Integration
+            <input type="radio" name="kbType" id="new_features_kb" value="new_features_kb" />New Features
+            <input type="radio" name="kbType" id="data_architecture_kb" value="data_architecture_kb" />Data Architecture
+  			<br />
+  			<br />  
+  			<button type="button" class="button" onclick="mainController()">Search VExSS - Filtered Search</button>
+  			<p><strong>Disable Query Cache [Query Cache is on by default to allow you create a Report for sharing]:</strong></p>
+            <input type="radio" name="queryCache" id="queryCache" value="enableQueryCache">Disable Query Cache
+            <br />
+            <br />
+            <button type="button" class="button" onclick="queryCacheReportHandler()">Create Report</button>
+            <button type="button" class="button" onclick="clearReportCache()">Clear Cache</button>
+        </form>
+        </div>
+        
+    <!-- BEGIN RESPONSE AREA -->
+    <div id="responseArea"  class="response">
+    <header>>>>Feedback Display Area</header>
+    </div>
+    <!-- END RESPONSE AREA -->
+        
+    <!-- External JavaScript Client Library from ES -->
+    <!-- 05.05.2015: Fixed elasticsearch.yml as was too restrictive and blocking the calls from this SPA web client! -->
+	<script src="elasticsearch.js"></script>
+	<script src="vexss-client.js"></script>
+    </body>
+</html>
+

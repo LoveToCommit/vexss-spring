@@ -1,0 +1,82 @@
+.top 
+{
+    background-color: #3366CC;
+    font-family: Xolonium, arial, sans-serif;
+    font-style: normal;
+    font-size: 36px;
+    width: 600px;
+    padding: 10px;
+    border: 15px solid black;
+    margin: 15px;
+}
+    
+.heading 
+{
+    background-color: #FFFFFF;
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    width: 600px;
+    padding: 10px;
+    border: 15px solid black;
+    margin: 15px;
+}
+    
+.response 
+{
+    background-color: #FFFFFF;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    width: 600px;
+    height: 900px;
+    padding: 10px;
+    border: 15px solid #616161;
+    margin: 15px;
+}
+    
+.button
+{
+  font-family: arial, sans-serif;
+  display:inline;
+  border-style: solid;
+  width: 250px;
+  text-align: left;
+  background-color: #ECECEC;
+}
+    
+.form
+{
+    background-color: #FFFFFF;
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    padding: 10px;
+    border: 15px solid black;
+    margin: 15px;
+    width: 600px;
+}
+
+.response em
+{
+	background-color: yellow;
+}
+
+.h4 
+{
+	font-family: arial, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+    
+.reportHeader
+{
+    background-color: #B2D1F0;
+    font-family: Xolonium, arial, sans-serif;
+    font-style: normal;
+    font-size: 36px;
+    width: 600px;
+    padding: 10px;
+    border: 15px solid black;
+    margin: 15px;
+}
