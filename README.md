@@ -1,7 +1,7 @@
 # vexss-spring
 Vendor Expert Support System (VExSS) - Elasticsearch Prototype - Spring Domain.
 
-# WHAT
+## WHAT
 VExSS is a prototype expert system designed to target a single vendor or open source project (OSP) from the Vendelligence system.
 
 I built the original prototype in 2015 when I was playing with Elasticsearch 1.x releases on Windows 10. This is an updated version covering Spring projects instead of the SAP domain. It runs on Elasticsearch 5.x.
