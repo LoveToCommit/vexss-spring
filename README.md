@@ -17,12 +17,13 @@ data structure on my own notes and a way to index them using an open source sear
 
 Vendelligence targets the EXTERNAL web using the Google Custom Search JSON API. I needed a solution that worked with the INTERNAL data
 storage mechanism I had deliberately designed into Vendelligence - the Query Model class. VExSS would be an initial solution prototype.
-It uses Elasticsearch because (a) it's easy to install and configure, (b) can handle high volume data, (c) is near-real-time and (d) is
-open source so we don't have to rely on external vendor APIs with massive fees. We get enough horsepower that we can adapt it to our needs.
+It uses Elasticsearch because:
+* (a) it's easy to install and configure, 
+* (b) can handle high volume data, 
+* (c) is near-real-time and 
+* (d) is open source so we don't have to rely on external vendor APIs with pricey fees. We get enough horsepower that we can adapt it to our needs.
 
-The reason there are so many extra flag-type JSON fields and label categories is I knew I would create a lot of these files per Vendor or Open Source Project (OSP). 
-And I need a lot of these files to have any chance of getting useful output from machine learning frameworks. Last I started research into 
-the Google Sentiment Analysis and Natural Language Processing APIs. Most require labels and methods to train the system on the data samples.
+Note: The reason there are so many extra flag-type JSON fields and label categories is I knew I would create a lot of these files per Vendor or Open Source Project (OSP). And I need a lot of these files to have any chance of getting useful output from machine learning frameworks. Last week, I started research into the Google Sentiment Analysis and Natural Language Processing APIs. Most require labels and methods to train the system on the data samples, based on the documentation and tutorials I read, so I'll use these as a starting point.
 
 ## PRECONDITIONS
 1. elasticsearch runs on localhost:9200
@@ -78,5 +79,4 @@ I originally developed using Elasticsearch 1.x on Windows 7, and later Windows 1
 vexss-client and and index.html are the two core files. You can adapt them easily - I already customized them on the fly today; just remember to adjust your -kb name in the POST line of the JSON file if you wish to create new -kb references and update the index.html HTML ids and name attributes accordingly. You can obviously customize the JSON data model however you wish for your own needs.
 
 ### 5. Have you got an automated CRUD tool for the JSON data model instances?
-No. Not yet. That's something I'll probably create using PHP or Spring Boot as simple utility application. My workflow habit is text files in vi on OSX or an editor like notepad++ on Windows. My natural text file would be much simpler than the one I created here, so
-this JSON file is a good candidate for tooling as much of it is metadata about the file itself.
+No. That's something I'll probably create using Spring Boot or PHP, as a simple utility application. My workflow habit is text files in vi on OSX or an editor like notepad++ on Windows for now. It's just faster, so the tool needs to be fast enough not to get in my way. My natural text file would be much simpler than the one I created here, however, so this JSON file template is a good candidate for tooling as much of it is metadata about the file itself deliberately modelled to target machine learning APIs for data sample training purposes.
