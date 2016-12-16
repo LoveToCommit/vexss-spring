@@ -28,21 +28,31 @@ the Google Sentiment Analysis and Natural Language Processing APIs. Most require
 1. elasticsearch runs on localhost:9200
 2. kibana runs on localhost:5601
 3. elasticsearch.yml has following additional entries:
-add below properties to avoid access-control-allow-origin errors in browser developer tools console
+
+```
+#add below properties to avoid access-control-allow-origin errors in browser developer tools console
 http.cors.enabled: true
 http.cors.allow-origin: "*"
-
+```
 4. You have an HTTP server running. In my case, I use a Homebrew installation of Apache HTTP Server. Once it's running, you should
 be able to drop in the vexss-client folder directly into it and immediately load the index.html using this path e.g.
+```
 http://localhost:80/vexss-client
+```
 
 ## INSTALLATION INSTRUCTIONS
 1. Install Elasticsearch
+https://www.elastic.co/downloads/elasticsearch
 2. Install Kibana (not mandatory as you can use command line console on elasticsearch, but it's helpful)
+https://www.elastic.co/downloads/kibana
 3. Install HTTP server (Apache, NGINX, etc.)
+https://httpd.apache.org/
+or
+https://www.nginx.com/resources/wiki/
 4. Install Elasticsearch Javascript Client - My build contains a copy of the latest release, but you might want the minified version
-5. Build the index - you can run each of the JSON files within /Users/niallguerin/git/vexss-spring/VeXSS - Spring/vexss-index-spring-boot
-directly in the Kibana - Dev Tools UI
+https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html
+5. Build the index - you can run each of the JSON files within vexss-index-spring-boot directly in the Kibana - Dev Tools UI
+https://www.elastic.co/guide/en/elasticsearch/reference/current/_index_and_query_a_document.html
 6. Drop the vexss-client folder into your HTTP server
 7. Hit localhost:80/vexss-client
 
@@ -50,27 +60,23 @@ directly in the Kibana - Dev Tools UI
 Select * Data Architecture radio button and enter search string like "database support"
 
 ## FAQ
-1. Why do you have queryTopicVariants defined?
-Ans: To allow for variations in queries the way I ask them myself or the way a client used to ask me questions. Two people might be asking the same thing
-but phrase it quite differently. Remember, this is intended to be plugged into machine learning APIs, so we need to give the system something
-concrete to work with in a prototype.
+### 1. Why do you have queryTopicVariants defined?
+To allow for variations in queries the way I ask them myself or the way a client used to ask me questions. Two people might be asking the same thing but phrase it quite differently. Remember, this is intended to be plugged into machine learning APIs, so we need to give the system something concrete to work with in a prototype.
 
-2. Why is the textarea so big - why not just a search panel?
-Ans: This is deliberately a single-page-application. When I created the initial prototypes in 2015, I also used a voice-plugin for
-some browsers, but the speech interaction started to annoy me because it was clunky and command-oriented and unnatural. However, while
-I could just wire up another messaging system, I wanted to lay the starting block for back and forth chat flow with the system.
+### 2. Why is the textarea so big - why not just a search panel?
+This is deliberately a single-page-application. When I created the initial prototypes in 2015, I also used a voice-plugin for
+some browsers, but the speech interaction annoyed me because it was clunky and command-oriented and unnatural. I am a fan of speech
+but I need to plug in a framework built by people who have solved speech interaction issues. However, while
+I could just wire up another messaging system API, I wanted to lay the starting block for back and forth chat flow with the system and
+this layout let me enter large text blocks (like how I speak) and test the search boost configuration against those patterns, leveraging
+the power of Elasticsearch itself.
 
-3. Does this work on other operating systems?
-Ans: I originally developed using Elasticsearch 1.x on Windows 7, and later Windows 10. Today, I ported it to MAC OSX in less than 20 mins in terms
-of the Elasticsearch and Kibana setup. It says a lot about Elasticsearch that I can get a prototype migrated and up and running in such
-rapid time on a different OS, using the latest release of Elasticsearch and Kibana. The tools have improved vastly even since I used them in 2015.
-It should work on other OSes as I'm using only the Elasticsearch Javascript client (latest release) as main backbone here for my own code.
+### 3. Does this work on other operating systems?
+I originally developed using Elasticsearch 1.x on Windows 7, and later Windows 10. Today, I ported it to MAC OSX in less than 30 mins in terms of the Elasticsearch and Kibana setup and re-indexing. I was using the latest release of Elasticsearch and Kibana as wanted to use it as an opportunity to refresh on Elasticsearch as had not used it since mid 2015. The tools have improved vastly in that time. It should work on other OSes as I'm using only the Elasticsearch Javascript client (latest release) as main backbone here for my own code in the main vexss-client.js file.
 
-4. What are the main component files we need to care about if we customize?
-Ans: vexss-client and and index.html are the two core files. You can adapt them easily - I already customized them on the fly today; just remember to
-adjust your -kb name in the POST line of the JSON file if you wish to create new -kb references and update the index.html HTML ids and
-name attributes accordingly. You can obviously customize the JSON data model however you wish for your own needs.
+### 4. What are the main component files we need to care about if we customize?
+vexss-client and and index.html are the two core files. You can adapt them easily - I already customized them on the fly today; just remember to adjust your -kb name in the POST line of the JSON file if you wish to create new -kb references and update the index.html HTML ids and name attributes accordingly. You can obviously customize the JSON data model however you wish for your own needs.
 
-5. Have you got an automated CRUD tool for the JSON data model instances?
-Ans: No. Not yet. That's something I'll probably create using PHP or Spring Boot as simple utility application. My workflow habit is text files in vi on OSX or an editor like notepad++ on Windows. My natural text file would be much simpler than the one I created here, so
+### 5. Have you got an automated CRUD tool for the JSON data model instances?
+No. Not yet. That's something I'll probably create using PHP or Spring Boot as simple utility application. My workflow habit is text files in vi on OSX or an editor like notepad++ on Windows. My natural text file would be much simpler than the one I created here, so
 this JSON file is a good candidate for tooling as much of it is metadata about the file itself.
