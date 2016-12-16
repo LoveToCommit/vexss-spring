@@ -56,7 +56,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/_index_and_query
 Select * Data Architecture radio button and enter search string like "database support"
 
 ## TEST RESULTS
-The current build is a prototype and main focus is on wiring up Elasticsearch and iterating the JSON data model. The results will show stuff from other knowledge base categories if it does a keyword match right now, even it pushes the most relevant result to the top. I have experimented with various search boost settings in the past, so will re-introduce those tests to this version to fine-tune the results and utilise more fields from the JSON data model that are intended filter out the most accurate answer.
+The current build is a prototype and main focus is on wiring up Elasticsearch and iterating the JSON data model. The results will show stuff from other knowledge base categories if it does a keyword match right now, even if it pushes the most relevant result to the top. I have experimented with various search boost settings in the past, so will re-introduce those tests to this version to fine-tune the results and utilise more fields from the JSON data model that are intended filter out the most accurate answer.
 
 ## FAQ
 ### 1. Why do you have Query Topic Variants defined?
