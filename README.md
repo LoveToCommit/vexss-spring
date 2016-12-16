@@ -56,6 +56,7 @@ https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/inde
 https://www.elastic.co/guide/en/elasticsearch/reference/current/_index_and_query_a_document.html
 6. Drop the vexss-client folder into your HTTP server
 7. Hit localhost:80/vexss-client
+8. Set up a cp script that has authorization to copy a directory from your workspace directory (Eclipse-Neon in my case) to the target apache http server directory. This lets you do live reloading when you make updates to the build. Alternatively run directly in the IDE of choice.
 
 ## EXAMPLE
 Select * Data Architecture radio button and enter search string like "database support"
