@@ -44,7 +44,7 @@ function mainController()
 	var queryString = query.value;
 	var queryFocus = "";
     
-    // For displaying results to the user. Possible security vulnerability using DOM in this way. Do security hardening in future code review.
+    // For displaying results to the user for prototype phase - goal is two-way text AND speech flow
     var output = document.getElementById("responseArea");
 
 	// Allow for "answer unknown" scenarios and provide feedback-loop to handle this use case
