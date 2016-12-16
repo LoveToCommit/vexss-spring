@@ -2,28 +2,22 @@
 Vendor Expert Support System (VExSS) - Elasticsearch Prototype - Spring Domain.
 
 # WHAT
-VExSS was a prototype I developed in 2015 when I was experimenting with Elasticsearch on Windows 10 OS. That version was highly customized to work with SAP Process Integration, Orchestration, and Systems Integration topics specific to the SAP domain. For security reasons, I cannot upload Note data that I would have used as an open ecosystem partner. As with Vendelligence, I wanted to extend it beyond that initial vendor or open source project domain for experimental purposes.
+VExSS is a prototype expert system designed to target a single vendor or open source project (OSP) from the Vendelligence system.
 
-This version targets the general Spring projects domain.
+I built the original prototype in 2015 when I was playing with Elasticsearch 1.x releases on Windows 10. This is an updated version covering Spring projects instead of the SAP domain. It runs on Elasticsearch 5.x.
 
-This prototype does not use the same BOOST settings and other configurations intended to optimize the search results that I used in the
-prototype from 2015, which was focusing on SAP. As I am working with a new release of Elasticsearch, I want to research any changes
-or new options in the settings and use it as a stepping stone to creating a simple expert system
-over targeted information domains, derived from the Vendelligence project.
+It consists of a single HTML view, a Javascript client (no frameworks), and the Elasticsearch.js library to connect to the Elasticsearch server. It runs inside any HTTP server.
+
+Kibana is used for indexing in the interim, as it lets me iterate the JSON data model quickly in tandem with my text editors of choice, without needing me to write a separate CRUD utility during the prototyping phase.
 
 ## WHY
-I wanted a dedicated expert system to support me if doing my own open source project (OSP) work or providing vendor services. I wanted a formal
-data structure on my own notes and a way to index them using an open source search solution. VExSS focuses on a single vendor or OSP.
+I wanted a dedicated expert system to support me during my own vendor support services or prototype experiments with open source projects (OSPs).
 
-Vendelligence targets the EXTERNAL web using the Google Custom Search JSON API. I needed a solution that worked with the INTERNAL data
-storage mechanism I had deliberately designed into Vendelligence - the Query Model class. VExSS would be an initial solution prototype.
-It uses Elasticsearch because:
-* (a) it's easy to install and configure, 
-* (b) can handle high volume data, 
-* (c) is near-real-time and 
-* (d) is open source so we don't have to rely on external vendor APIs with pricey fees. We get enough horsepower that we can adapt it to our needs.
+While Vendelligence focuses on the data curation and data storage steps, VExSS focuses on querying that stored Query data, using a more complex data structure, to help lay the building blocks for an initial expert system.
 
-Note: The reason there are so many extra flag-type JSON fields and label categories is I knew I would create a lot of these files per Vendor or Open Source Project (OSP). And I need a lot of these files to have any chance of getting useful output from machine learning frameworks. Last week, I started research into the Google Sentiment Analysis and Natural Language Processing APIs. Most require labels and methods to train the system on the data samples, based on the documentation and tutorials I read, so I'll use these as a starting point.
+The idea is to tune the search results using the flags, labels, and pattern variants in the JSON data model instances.
+
+The next step is testing out the JSON data model instances against machine learning APIs. I will need a reasonably large number of instances to train any such API. I am researching the Google Sentiment Analysis and NLP APIs to determine if an initial prototype can be created using VExSS as the base layer.
 
 ## PRECONDITIONS
 1. elasticsearch runs on localhost:9200
@@ -61,23 +55,25 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/_index_and_query
 ## EXAMPLE
 Select * Data Architecture radio button and enter search string like "database support"
 
+## TEST RESULTS
+The current build is a prototype and main focus is on wiring up Elasticsearch and iterating the JSON data model. The results will show stuff from other knowledge base categories if it does a keyword match right now, even it pushes the most relevant result to the top. I have experimented with various search boost settings in the past, so will re-introduce those tests to this version to fine-tune the results and utilise more fields from the JSON data model that are intended filter out the most accurate answer.
+
 ## FAQ
-### 1. Why do you have queryTopicVariants defined?
+### 1. Why do you have Query Topic Variants defined?
 To allow for variations in queries the way I ask them myself or the way a client used to ask me questions. Two people might be asking the same thing but phrase it quite differently. Remember, this is intended to be plugged into machine learning APIs, so we need to give the system something concrete to work with in a prototype.
 
 ### 2. Why is the textarea so big - why not just a search panel?
 This is deliberately a single-page-application. When I created the initial prototypes in 2015, I also used a voice-plugin for
-some browsers, but the speech interaction annoyed me because it was clunky and command-oriented and unnatural. I am a fan of speech
-but I need to plug in a framework built by people who have solved speech interaction issues. However, while
-I could just wire up another messaging system API, I wanted to lay the starting block for back and forth chat flow with the system and
-this layout let me enter large text blocks (like how I speak) and test the search boost configuration against those patterns, leveraging
-the power of Elasticsearch itself.
+some browsers, but the speech interaction annoyed me because it was clunky, command-oriented and unnatural. I am a fan of speech interfaces but I need to plug in a framework built by people who have solved speech interaction issues. To use this in a work context, I need background noise filtered out! However, while I could just wire up another messaging system API, I wanted to lay the starting block for back and forth chat flow with the system and this layout let me enter large text blocks (like how I speak) and test the search boost configuration against those patterns, leveraging the power of Elasticsearch itself.
 
 ### 3. Does this work on other operating systems?
-I originally developed using Elasticsearch 1.x on Windows 7, and later Windows 10. Today, I ported it to MAC OSX in less than 30 mins in terms of the Elasticsearch and Kibana setup and re-indexing. I was using the latest release of Elasticsearch and Kibana as wanted to use it as an opportunity to refresh on Elasticsearch as had not used it since mid 2015. The tools have improved vastly in that time. It should work on other OSes as I'm using only the Elasticsearch Javascript client (latest release) as main backbone here for my own code in the main vexss-client.js file.
+I originally developed using Elasticsearch 1.x on Windows 7, and later Windows 10. This version (December 2016) was ported to MAC OSX in less than 30 mins in terms of the Elasticsearch and Kibana install and setup. The JSON data files had to be created from scratch using the original data model templates. I was using the latest release of Elasticsearch and Kibana as wanted to use it as an opportunity to refresh on Elasticsearch, as had not used it since mid 2015. It should work on other operating systems as I'm using only the Elasticsearch Javascript client (latest release) as main backbone here for my own code in the vexss-client.js file.
 
 ### 4. What are the main component files we need to care about if we customize?
 vexss-client and and index.html are the two core files. You can adapt them easily - I already customized them on the fly today; just remember to adjust your -kb name in the POST line of the JSON file if you wish to create new -kb references and update the index.html HTML ids and name attributes accordingly. You can obviously customize the JSON data model however you wish for your own needs.
 
 ### 5. Have you got an automated CRUD tool for the JSON data model instances?
-No. That's something I'll probably create using Spring Boot or PHP, as a simple utility application. My workflow habit is text files in vi on OSX or an editor like notepad++ on Windows for now. It's just faster, so the tool needs to be fast enough not to get in my way. My natural text file would be much simpler than the one I created here, however, so this JSON file template is a good candidate for tooling as much of it is metadata about the file itself deliberately modelled to target machine learning APIs for data sample training purposes.
+No. My focus is prototyping the expert system aspects so Kibana worked perfectly as a CRUD utility for the initial builds. I will need a way to generate a large sample of JSON instances if I am going to get any meaningful results from Google machine learning and NLP API integration tests, so I will look at options for sample JSON data file generation to support that exercise.
+
+### 6. Are you open to collaboration?
+Yes. All my projects are experiments in my view, so I'm more than happy to get help from folks who can add insights or create tools that help the project.
